@@ -4,18 +4,10 @@ Feature: ORANGE HRM Website
 
 		Given I have launch https://opensource-demo.orangehrmlive.com
 
-		When I enter username Admin and password admin123
+		When I entered user as Admin in OrangeHRM
 
-        And I click login
+        And  I entered password as admin123 in OrangeHRM
 
-        Then I should get user as Welcome Admin
+        And I click login in OrangeHRM
 
-    Scenario: Verify Fail Login for ORANGE HRM
-
-		Given I have launch https://www.instagram.com/accounts/login/?hl=en
-
-		When I enter username admin and password admin133
-
-        And I click login
-
-        Then I should get user as Welcome Admin
+        Then I should get loginid as Welcome Admin in OrangeHRM

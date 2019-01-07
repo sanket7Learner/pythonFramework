@@ -23,19 +23,24 @@ def fnLaunchURL(urlName):
    wait = WebDriverWait(driver, 30)
    driver.get(urlName)
 
-def fnSetValue(locatorKey,LocatorValue):
+def fnSetValue(Locator_Value,Input_Value):
          elementUserName = wait.until(
-         expected_conditions.visibility_of_element_located((By.XPATH, oGlobalLocatorDict[locatorKey])))
-         elementUserName.send_keys(LocatorValue)
+         expected_conditions.visibility_of_element_located((By.XPATH,Locator_Value)))
+         elementUserName.send_keys(Input_Value)
 
 def fnClickObject(locatorObjectKey):
-        elementToClick = wait.until(expected_conditions.visibility_of_element_located((By.XPATH,oGlobalLocatorDict[locatorObjectKey])))
+        elementToClick = wait.until(expected_conditions.visibility_of_element_located((By.XPATH,locatorObjectKey)))
         elementToClick.click()
 
 def fnAssertValidation(locatorAssert,assertValue):
-        elementToVerify = wait.until(expected_conditions.visibility_of_element_located((By.XPATH,oGlobalLocatorDict[locatorAssert])))
+        elementToVerify = wait.until(expected_conditions.visibility_of_element_located((By.XPATH,locatorAssert)))
 
         if elementToVerify.text==assertValue:
             assert True
         else:
             assert False
+
+def fnGetLocatorValue(Application_Type,Locator_Key):
+    Temp_Dict = oGlobalLocatorDict[Application_Type]
+    Locator_Value = Temp_Dict[Locator_Key]
+    return Locator_Value

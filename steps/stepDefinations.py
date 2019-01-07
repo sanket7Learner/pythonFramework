@@ -5,15 +5,17 @@ from commonFunctions import *
 def launch_URL(context,launchURL):
     fnLaunchURL(launchURL)
 
-@when('I enter username {userName:D} and password {password}')
-def setCredentials(context,userName,password):
-    fnSetValue("hrm_username",userName)
-    fnSetValue("hrm_password",password )
+@when('I entered {Login_Type} as {login_Value} in {Application_Name}')
+def setCredentials(context,Login_Type, login_Value , Application_Name):
+    Locator_Value = fnGetLocatorValue(Application_Name,Login_Type)
+    fnSetValue(Locator_Value,login_Value)
 
-@when('I click {loginButton}')
-def clickLogin(context,loginButton):
-    fnClickObject("hrm_loginbutton")
+@when('I click {Element_Name} in {Application_Name}')
+def clickLogin(context,Element_Name,Application_Name):
+    Locator_Value = fnGetLocatorValue(Application_Name, Element_Name)
+    fnClickObject(Locator_Value)
 
-@then('I should get user as {userToValidate:D}')
-def clickLogin(context,userToValidate):
-    fnAssertValidation("hrm_loginid",userToValidate)
+@then('I should get {login_Details} as {userToValidate:D} in {Application_Name}')
+def clickLogin(context,login_Details,userToValidate,Application_Name):
+    Locator_Value = fnGetLocatorValue(Application_Name, login_Details)
+    fnAssertValidation(Locator_Value,userToValidate)
